@@ -2,17 +2,6 @@ const path = require("path");
 const os = require("os");
 const process = require("process");
 
-// const filePath = "Week2/my_file.js";
-// console.log("File Path Separator:", path.sep);
-
-// const filePath = path.sep;
-// console.log(filePath);
-
-// // const userInfo = os.userInfo();
-// // console.log("User Information:");
-// // console.log("Username:", userInfo.username);
-// console.log("Home Directory:", userInfo.homedir);
-
 // 1. Print out the current working directory
 const currentWrkDir = process.cwd();
 console.log(currentWrkDir);
