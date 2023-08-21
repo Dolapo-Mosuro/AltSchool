@@ -1,8 +1,12 @@
 const http = require("http");
+const fs = require("fs");
+const path = require("path");
 
 const port = 3001;
 
-const items = [];
+const itemsPath = path.join(__dirname, "items.json");
+
+let items = [];
 
 const responseHandler =
 	(req, res) =>
@@ -30,6 +34,25 @@ const bodyParser = (req, res, callback) => {
 	});
 };
 
+const loadItems = () => {
+	try {
+		const fileItems = fs.readFileSync(itemsPath, "utf8");
+		items = JSON.parse(fileItems);
+	} catch (error) {
+		console.error("Error loading items from disk:", error.message);
+		items = [];
+	}
+};
+
+const saveItems = () => {
+	try {
+		fs.writeFileSync(itemsPath, JSON.stringify(items, null, 2), "utf8"); // Write the 'items' array to the file
+		console.log("Items saved to disk.");
+	} catch (error) {
+		console.error("Error saving items to disk:", error.message);
+	}
+};
+
 const requestHandler = (req, res) => {
 	const response = responseHandler(req, res);
 
@@ -39,9 +62,16 @@ const requestHandler = (req, res) => {
 			id: Math.floor(Math.random() * 20).toString(),
 		});
 
+		saveItems();
+
 		return response({
 			data: items,
 			code: 201,
+		});
+	} else if (req.url === "/v1/items" && req.method === "GET") {
+		return response({
+			data: items,
+			code: 200,
 		});
 	}
 	//Get all items
@@ -126,6 +156,8 @@ const requestHandler = (req, res) => {
 const server = http.createServer((req, res) =>
 	bodyParser(req, res, requestHandler)
 );
+
+loadItems();
 
 server.listen(port, () => {
 	console.log(`Your Server is live on port: ${port}`);

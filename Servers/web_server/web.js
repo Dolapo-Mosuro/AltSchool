@@ -9,20 +9,20 @@ const handleRequest = (req, res) => {
 	if (req.url === "/index.html") {
 		// check url
 		const file = fs.readFileSync("./index.html");
-		res.setHeader("content-type", "text/html"); // sets content type header
-		res.writeHead(200); // sets http status code
-		res.write(file); // sets data to be returned
-		res.end(); // ends the request cycle
+		res.setHeader("content-type", "text/html");
+		res.writeHead(200);
+		res.write(file);
+		res.end();
 	} else {
-		const file = fs.readFileSync("./404.html"); // reads the 404 file
-		res.setHeader("content-type", "text/html"); // sets content type header
-		res.writeHead(500); // sets http status code
-		res.write(file); // sets data to be returned
-		res.end(); // ends the request cycle
+		const file = fs.readFileSync("./404.html");
+		res.setHeader("content-type", "text/html");
+		res.writeHead(500);
+		res.write(file);
+		res.end();
 	}
 };
 
-const server = http.createServer(handleRequest); // create server, handle request
+const server = http.createServer(handleRequest);
 http.createServer(handleRequest).listen(PORT, HOSTNAME, () => {
 	console.log(`Server running at http://${PORT}:${HOSTNAME}:/`);
 });
