@@ -1,0 +1,19 @@
+{
+	"name": "api_server",
+	"version": "1.0.0",
+	"description": "",
+	"main": "api.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node web.js",
+		"start:dev": "nodemon web.js",
+		"start:api": "node apiServer.js",
+		"start:dev:api": "nodemon apiServer.js"
+	},
+	"keywords": [],
+	"author": "Dolapo Mosuro",
+	"license": "ISC",
+	"devDependencies": {
+		"nodemon": "^3.0.1"
+	}
+}
