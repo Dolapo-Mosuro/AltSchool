@@ -1,0 +1,31 @@
+[
+  {
+    "name": "Sandals",
+    "price": "3.99",
+    "size": "large"
+  },
+  {
+    "name": "Cap",
+    "price": "1.99",
+    "size": "small"
+  },
+  {
+    "name": "Jeans",
+    "price": "8.49",
+    "size": "medium"
+  },
+  {
+    "name": "Shirt",
+    "price": "7.99",
+    "size": "small"
+  },
+  {
+    "name": "Sandals",
+    "price": "3.99",
+    "size": "large",
+    "id": "0"
+  },
+  {
+    "id": "5"
+  }
+]
