@@ -1,0 +1,49 @@
+<html>
+	<head>
+		<!-- Add your external CSS stylesheet link -->
+		<link
+			rel="stylesheet"
+			href="/static/stylesheets/style.css"
+			type="text/css"
+		/>
+
+		<link
+			href="https://fonts.googleapis.com/css?family=Roboto&display=swap"
+			rel="stylesheet"
+		/>
+		<link
+			rel="stylesheet"
+			href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+			integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay"
+			crossorigin="anonymous"
+		/>
+		<title>To-Do App</title>
+	</head>
+	<body>
+		<h1>To-Do App</h1>
+		<ul>
+			<% tasks.forEach(task => { %>
+			<li><%= task.title %></li>
+			<% }); %>
+		</ul>
+		<!-- Add a form for creating tasks -->
+        <form action="/" method="POST" class="todo-header">
+<input type="text" name="content">
+<button type="submit"><span class="fas fa-plus"></span></button>
+</form>
+<ul class="todo-app">
+<li class="todo-app-item">
+<div class="todo-app-item-name">Some Text</div>
+<a href="" class="edit">
+<span class="fas fa-edit"></span>
+</a>
+<a href="" class="remove">
+<span class="fas fa-times"></span>
+</a>
+</li>
+</ul>
+</div>
+</div>
+		<a href="/tasks/create">Create a New Task</a>
+	</body>
+</html>

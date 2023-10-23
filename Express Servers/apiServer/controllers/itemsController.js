@@ -1,13 +1,11 @@
-const fs = require("fs");
 const path = require("path");
+const fs = require("fs").promises;
 
-const itemsPath = path.join(__dirname, "../items.json");
+const itemsPath = path.join(__dirname, "items.json");
 
-let items = [];
-
-const loadItems = () => {
+const loadItems = async () => {
 	try {
-		const fileItems = fs.readFileSync(itemsPath, "utf8");
+		const fileItems = await fs.readFile(itemsPath, "utf8");
 		items = JSON.parse(fileItems);
 	} catch (error) {
 		console.error("Error loading items from disk:", error.message);
@@ -15,46 +13,41 @@ const loadItems = () => {
 	}
 };
 
-const saveItems = () => {
-	try {
-		fs.writeFileSync(itemsPath, JSON.stringify(items, null, 2), "utf8");
-		console.log("Items saved to disk.");
-	} catch (error) {
-		console.error("Error saving items to disk:", error.message);
-	}
-};
-
-const getItems = () => {
+const getItems = async () => {
+	await loadItems();
 	return items;
 };
 
-const getItemById = (id) => {
+const getItemById = async (id) => {
+	await loadItems();
 	return items.find((item) => item.id === id);
 };
 
-const addItem = (item) => {
-	items.push(item);
-	saveItems();
+const addItem = async (newItem) => {
+	await loadItems();
+	items.push(newItem);
+	await fs.writeFile(itemsPath, JSON.stringify(items));
 };
 
-const updateItem = (id, newData) => {
-	const index = items.findIndex((item) => item.id === id);
-	if (index !== -1) {
-		items[index] = { ...items[index], ...newData };
-		saveItems();
+const updateItem = async (id, newData) => {
+	await loadItems();
+	const itemIndex = items.findIndex((item) => item.id === id);
+	if (itemIndex !== -1) {
+		items[itemIndex] = { ...items[itemIndex], ...newData };
+		await fs.writeFile(itemsPath, JSON.stringify(items));
 	}
 };
 
-const deleteItem = (id) => {
-	const index = items.findIndex((item) => item.id === id);
-	if (index !== -1) {
-		items.splice(index, 1);
-		saveItems();
+const deleteItem = async (id) => {
+	await loadItems();
+	const itemIndex = items.findIndex((item) => item.id === id);
+	if (itemIndex !== -1) {
+		items.splice(itemIndex, 1);
+		await fs.writeFile(itemsPath, JSON.stringify(items));
 	}
 };
 
 module.exports = {
-	loadItems,
 	getItems,
 	getItemById,
 	addItem,

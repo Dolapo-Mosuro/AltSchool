@@ -24,7 +24,8 @@ const sendFile = async (res, file, statusCode) => {
 };
 
 // Handling routes
-server.get("./index.html", async (req, res) => {
+
+server.get("/index.html", async (req, res) => {
 	sendFile(res, indexPage, 200); // Send index.html with a 200 status code
 });
 

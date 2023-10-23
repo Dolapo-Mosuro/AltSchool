@@ -1,18 +1,18 @@
 {
-  "name": "apiserver",
-  "version": "1.0.0",
-  "description": "",
-  "main": "api.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "devDependencies": {
-    "nodemon": "^3.0.1"
-  },
-  "dependencies": {
-    "express": "^4.18.2"
-  }
+	"name": "apiserver",
+	"version": "1.0.0",
+	"description": "",
+	"main": "api.js",
+	"dependencies": {
+		"express": "^4.18.2"
+	},
+	"devDependencies": {
+		"nodemon": "^3.0.1"
+	},
+	"scripts": {
+		"start": "node api.js",
+		"dev": "nodemon api.js"
+	},
+	"author": "",
+	"license": "ISC"
 }
